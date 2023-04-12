@@ -10,7 +10,7 @@ comments: true
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-12 09:55:10
+ * @LastEditTime: 2023-04-12 10:00:04
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -33,8 +33,8 @@ Click the buttons below for more information.
 ## Abstract
 
 <div style="text-align: center;">
-    <img style="width: 45%;" src="/assets/img/EV_fig1.png">
-    <img style="width: 45%;" src="/assets/img/EV_fig2.png">
+    <img style="width: 45%;" src="/E-Vertical/assets/img/EV_fig1.png">
+    <img style="width: 45%;" src="/E-Vertical/assets/img/EV_fig2.png">
 </div>
 
 With the fast development of AI-related techniques, the applications of trajectory prediction are no longer limited to easier scenes and trajectories.
