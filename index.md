@@ -10,31 +10,31 @@ comments: true
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-12 10:00:04
+ * @LastEditTime: 2023-04-13 17:58:04
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
-<link rel="stylesheet" type="text/css" href="/assets/css/user.css">
+<link rel="stylesheet" type="text/css" href="./assets/css/user.css">
 
 ## Information
 
-This paper is an expanded journal version of our conference paper "View vertically: A hierarchical network for trajectory prediction via fourier spectrums" ([homepage](https://cocoon2wong.github.io/2022-07-01-vertical/)).
+This paper is an expanded journal version of our conference paper "View vertically: A hierarchical network for trajectory prediction via fourier spectrums" ([homepage](https://cocoon2wong.github.io/Vertical/)).
 The paper is publicly available on arXiv.
 Click the buttons below for more information.
 
 <div style="text-align: center;">
-    <a class="btn btn-info btn-lg get-started-btn" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>
-    <a class="btn btn-info btn-lg" href="https://github.com/cocoon2wong/E-Vertical">🛠️ Codes</a>
-    <a class="btn btn-info btn-lg" href="/E-Vertical/howToUse">💡 Codes Guidelines</a>
+    <a class="btn btn-colorful btn-lg" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>
+    <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical">🛠️ Codes</a>
+    <a class="btn btn-colorful btn-lg" href="./howToUse">💡 Codes Guidelines</a>
 </div>
 
 ## Abstract
 
 <div style="text-align: center;">
-    <img style="width: 45%;" src="/E-Vertical/assets/img/EV_fig1.png">
-    <img style="width: 45%;" src="/E-Vertical/assets/img/EV_fig2.png">
+    <img style="width: 45%;" src="./assets/img/EV_fig1.png">
+    <img style="width: 45%;" src="./assets/img/EV_fig2.png">
 </div>
 
 With the fast development of AI-related techniques, the applications of trajectory prediction are no longer limited to easier scenes and trajectories.

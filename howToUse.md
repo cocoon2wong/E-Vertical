@@ -11,18 +11,18 @@ comments: true
  * @Author: Conghao Wong
  * @Date: 2023-02-27 16:20:22
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-13 14:24:29
+ * @LastEditTime: 2023-04-13 17:54:21
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
-<link rel="stylesheet" type="text/css" href="/assets/css/user.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/user.css">
 
 <div style="text-align: center;">
-    <a class="btn btn-info btn-lg" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>
-    <a class="btn btn-info btn-lg" href="https://github.com/cocoon2wong/E-Vertical">🛠️ Codes</a>
-    <a class="btn btn-info btn-lg" href="/E-Vertical/index">💡 Homepage</a>
+    <a class="btn btn-colorful btn-lg" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>
+    <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical">🛠️ Codes</a>
+    <a class="btn btn-colorful btn-lg" href="../index">💡 Homepage</a>
 </div>
 
 ## Get Started
@@ -54,13 +54,13 @@ pip install -r requirements.txt
 Read our post for more information about the environment configurations:
 
 <div style="text-align: center;">
-    <a class="btn btn-info btn-lg" href="https://cocoon2wong.github.io/2022-03-03-env/">💡 Environment Configuration Guidelines</a>
+    <a class="btn btn-colorful btn-lg" href="https://cocoon2wong.github.io/2022-03-03-env/">💡 Environment Configuration Guidelines</a>
 </div>
 
 ## Dataset Prepare and Process
 
 Before training `E-V^2-Net` on your own dataset, you should add your dataset information.
-See [this document]([TODO]) (Not Available Now) for details.
+See [this document](https://cocoon2wong.github.io/Project-Luna/) for details.
 
 ## Evaluation
 
@@ -88,8 +88,8 @@ Click the following buttons to download our weights and learn about how to insta
 We recommend that you download the weights and place them in the `weights/silverballers` folder.
 
 <div style="text-align: center;">
-    <a class="btn btn-info btn-lg" href="https://github.com/cocoon2wong/E-Vertical/releases/tag/V1.0">⬇️ Download Weights</a>
-    <a class="btn btn-info btn-lg" href="https://cocoon2wong.github.io/Project-Luna/howToUse/">💡 Dataset Guidelines</a>
+    <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical/releases/tag/V1.0">⬇️ Download Weights</a>
+    <a class="btn btn-colorful btn-lg" href="https://cocoon2wong.github.io/Project-Luna/howToUse/">💡 Dataset Guidelines</a>
 </div>
 
 You can start the quick evaluation via the following commands:
