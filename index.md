@@ -10,7 +10,7 @@ comments: true
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-13 17:58:04
+ * @LastEditTime: 2023-04-19 16:58:33
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -26,6 +26,8 @@ Click the buttons below for more information.
 
 <div style="text-align: center;">
     <a class="btn btn-colorful btn-lg" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>
+    <a class="btn btn-colorful btn-lg" href="./supplementalMaterials">📝 Supplemental Materials</a>
+    <br><br>
     <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical">🛠️ Codes</a>
     <a class="btn btn-colorful btn-lg" href="./howToUse">💡 Codes Guidelines</a>
 </div>
