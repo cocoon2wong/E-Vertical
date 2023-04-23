@@ -10,7 +10,7 @@ comments: true
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-19 16:58:33
+ * @LastEditTime: 2023-04-23 15:28:48
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -54,11 +54,11 @@ Experiments show that the proposed model outperforms most state-of-the-art metho
 If you find this work useful, it would be grateful to cite our paper!
 
 ```bib
-@article{wong2023vertical,
-    author={Conghao Wong and Beihao Xia and Qinmu Peng and Xinge You},
-    journal = {arXiv preprint arXiv:2304.05106},
-    title={Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums}, 
-    year={2023},
+@article{wong2023another,
+    title={Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums},
+    author={Wong, Conghao and Xia, Beihao and Peng, Qinmu and You, Xinge},
+    journal={arXiv preprint arXiv:2304.05106},
+    year={2023}
 }
 ```
 
