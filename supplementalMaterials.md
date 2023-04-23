@@ -8,7 +8,7 @@ subtitle: "Supplemental Materials for \"Another Vertical View: A Hierarchical Ne
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-19 16:54:54
+ * @LastEditTime: 2023-04-23 15:20:25
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -298,7 +298,7 @@ On the other hand, as shown in the traffic circle prediction scenario on the rig
 ---
 
 As mentioned above, the modeling of dimension-wise interactions focuses more on the relations of different trajectory dimensions, which could be difficult to represent by the 1D transform.
-The bilinear structure used in this manuscript learns this connection relation through the outer-product, pooling, and fully connected networks.
+The bilinear structure used in this manuscript learns this connection relation through the outer product, pooling, and fully connected networks.
 To make it easier to understand, we further explain it from a graph view.
 
 Given an undirected graph $\bm{G}(t) = (\bm{V}(t), \bm{E}(t))$ with a time variable $t$, where $\bm{V}(t)$ is the set of vertices, which contains all the position information of one agent at time $t$, and $\bm{E}(t)$ is the set of edges, which represents the connection relationships between these vertices at time $t$.
@@ -337,7 +337,7 @@ Formally,
 
 $$
     \label{eq_appendix_graphConv}
-    \bm{f}'_{m, t} = \sigma \left( \bm{W}'_m \mbox{Flatten} \left( \sum_{j=1}^{M} \bm{W}_{m, j}(t) {\bm{f}_{m, t}}^T \bm{f}_{j, t} \right) \right),
+    \bm{f}'_{m, t} = \sigma \left( \bm{W}'_m \mbox{Flatten} \left( \sum_{j=1}^{M} \bm{W}_{m, j}(t) \bm{f}_{m, t} \otimes \bm{f}_{j, t} \right) \right),
 $$
 
 where $\sigma$ represents a non-linear activation, and the $\bm{W}_m'$ is another trainable weight matrix.
@@ -362,9 +362,11 @@ $$
     \mathcal{V}'(t) = \left\{\bm{f}'_{1, n}, \bm{f}'_{2, n}, ..., \bm{f}'_{\mathcal{M}, n}\right\}.
 $$
 
-It is worth noting that in the graph view, the outer-product matrix has become the adjacency matrix of the graph $\bm{G}(n) = (\mathcal{V}(n), \mathcal{E}(n))$.
+Then, the outer product matrix $\bm{R}[n, :, :]$ has become the adjacency matrix of the graph $\bm{G}(n) = (\mathcal{V}(n), \mathcal{E}(n))$ on the frequency node $n \in [1, \mathcal{N}_h]$.
 
 
 ## References
+
+---
 
 [1] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, Ł. Kaiser, and I. Polosukhin, “Attention is all you need,” in Advances in neural information processing systems, 2017, pp. 59986008.
