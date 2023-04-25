@@ -94,7 +94,7 @@ $$
 Similar to the Transformer encoder, the Transformer decoder comprises several decoder layers, and each is stacked with two different attention layers.
 The first attention layer in the Transformer decoder focuses on the essential parts in the Transformer encoder's outputs $\bm{h}_e$ queried by the decoder's input $\bm{X}$.
 The second layer is the same self-attention layer as in the encoder.
-Similar to Equation 1, we have the decoder layer's output feature $\bm{h}^{(l+1)}$:
+Similar to Equation 4, we have the decoder layer's output feature $\bm{h}^{(l+1)}$:
 
 $$
     \label{eq_alpha_decoder}
@@ -347,10 +347,10 @@ $$
     \bm{V}'(t) = \left\{\bm{f}'_{1, t}, \bm{f}'_{2, t}, ..., \bm{f}'_{M, t}\right\}.
 $$
 
-It is worth noting that the above Equation 18 and the bilinear structure introduced in the manuscript describe the same network structure, despite their difference in representation.
+It is worth noting that the above Equation 19 and the bilinear structure introduced in the manuscript describe the same network structure, despite their difference in representation.
 To reduce unnecessary misunderstandings, we do not describe the network inference process through this graph form in the manuscript, although the use of a graph may make it easier to understand the motivation for the use of the bilinear model.
 In addition, all the operations above are performed on time series.
-If we use trajectory spectrums to replace the Equation 16, and take the frequency variable $n$ to instead the time variable $t$, we have
+If we use trajectory spectrums to replace the Equation 17, and take the frequency variable $n$ to instead the time variable $t$, we have
 
 $$
     \mathcal{V}(n) = \{\bm{f}_{m, n}\}_{m=1}^{\mathcal{M}},\quad\mbox{where}~\bm{f}_{m, n} = f(s_{n, m}).
