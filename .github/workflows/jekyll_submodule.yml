@@ -36,7 +36,7 @@ jobs:
         with:
           submodules: recursive
       - name: Build the site in the jekyll/builder container
-        run: actions/jekyll-build-pages@v1
+        uses: actions/jekyll-build-pages@v1
         with:
           source: .
           destination: ./_site
