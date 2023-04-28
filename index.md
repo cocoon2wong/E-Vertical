@@ -2,21 +2,17 @@
 layout: page
 title: E-Vertical
 subtitle: "Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums"
-# cover-img: /assets/img/2022-03-03/cat.jpeg
-# tags: [guidelines]
-comments: true
+cover-img: /subassets/img/ev.png
 ---
 <!--
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-23 15:28:48
+ * @LastEditTime: 2023-04-28 19:32:03
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
-
-<link rel="stylesheet" type="text/css" href="./assets/css/user.css">
 
 ## Information
 
@@ -35,8 +31,8 @@ Click the buttons below for more information.
 ## Abstract
 
 <div style="text-align: center;">
-    <img style="width: 45%;" src="./assets/img/EV_fig1.png">
-    <img style="width: 45%;" src="./assets/img/EV_fig2.png">
+    <img style="width: 45%;" src="./subassets/img/EV_fig1.png">
+    <img style="width: 45%;" src="./subassets/img/EV_fig2.png">
 </div>
 
 With the fast development of AI-related techniques, the applications of trajectory prediction are no longer limited to easier scenes and trajectories.

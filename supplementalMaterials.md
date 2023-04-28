@@ -1,42 +1,25 @@
 ---
-layout: pageWithLink
+layout: page
+add-md-links: true
+add-equations: true
 title: Supplemental Materials
 subtitle: "Supplemental Materials for \"Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums\""
-# cover-img: /assets/img/2022-03-03/cat.jpeg
 ---
 <!--
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-23 15:20:25
+ * @LastEditTime: 2023-04-28 19:38:58
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
-<link rel="stylesheet" type="text/css" href="../assets/css/user.css">
-
-<script>
-MathJax = {
-    tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        tags: 'all',
-        macros: {
-            bm: ["{\\boldsymbol #1}", 1],
-        },
-    }
-};
-</script>
-<script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-
 Due to the limitation of the paper's length, we have omitted some of the minor analytical descriptions and experimental validations in the main paper.
 These descriptions and experiments are still important, and we present them as supplementary material.
 
 <div style="text-align: center;">
-    <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical/blob/page/assets/img/sm.pdf">⬇️ Download Supplemental Materials (PDF)</a>
+    <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical/blob/page/subassets/img/sm.pdf">⬇️ Download Supplemental Materials (PDF)</a>
 </div>
 
 ## A. Transformer Details
@@ -219,7 +202,7 @@ Although the 2D DFT and its variations have achieved impressive results in tasks
 We will analyze this problem specifically by focusing on the different directions of the transforms in the trajectory.
 
 <div style="text-align: center;">
-    <img style="width: 100%;" src="../assets/img/appendix_1.png">
+    <img style="width: 100%;" src="../subassets/img/appendix_1.png">
     Fig. 1. Matrices views of a trajectory (2D bounding box) and an image.
 </div>
 
@@ -270,7 +253,7 @@ In other words, each element in this 4-dimensional vector is relatively independ
 <div style="text-align: center;">
     TABLE 1<br>
     Validation of 2D DFT and bilinear structures with best-of-20 on SDD (2D bounding box) the nuScenes (3D bounding box).
-    <img style="width: 100%;" src="../assets/img/appendix_2.png">
+    <img style="width: 100%;" src="../subassets/img/appendix_2.png">
 </div>
 
 To further verify our thoughts, we perform ablation experiments on SDD and nuScenes to compare the effects of 2D DFT and the bilinear structure quantitatively.
@@ -281,7 +264,7 @@ These experimental results validate our thoughts of not using 2D transforms but 
 ### Qualitative Analyses
 
 <div style="text-align: center;">
-    <img style="width: 100%;" src="../assets/img/appendix_3.png">
+    <img style="width: 100%;" src="../subassets/img/appendix_3.png">
     Fig. 2. Visualized comparisons of 2D DFT bilinear structure.
 </div>
 

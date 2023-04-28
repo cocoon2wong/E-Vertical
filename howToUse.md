@@ -1,23 +1,20 @@
 ---
-layout: pageWithLink
+layout: page
+add-md-links: true
 title: Codes Guidelines for the E-V^2-Net
 subtitle: "Official implementation of the paper \"Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums\""
-# cover-img: /assets/img/2022-07-01/eccv2022.png
 gh-repo: cocoon2wong/E-Vertical
 gh-badge: [star, fork]
-comments: true
 ---
 <!--
  * @Author: Conghao Wong
  * @Date: 2023-02-27 16:20:22
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-13 17:54:21
+ * @LastEditTime: 2023-04-28 19:32:30
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
-
-<link rel="stylesheet" type="text/css" href="../assets/css/user.css">
 
 <div style="text-align: center;">
     <a class="btn btn-colorful btn-lg" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>

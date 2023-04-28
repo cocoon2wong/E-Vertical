@@ -138,6 +138,12 @@ footer-text-col: "#777777"
 footer-link-col: "#404040"
 footer-hover-col: "#0085A1"
 
+# Button colors
+button-hover-color: "#660774"
+button-hover-text-color: "#FFFFFF"
+button-active-color: "#460744"
+button-active-text-color: "#FFFFFF"
+
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -284,6 +290,7 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
+  - Project-Zero/
 
 plugins:
   - jekyll-paginate
