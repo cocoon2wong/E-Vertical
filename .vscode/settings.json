@@ -5,7 +5,7 @@
         // "**/_includes": true,
         // "**/_layouts": true,
 
-        "**/.github": true,
+        // "**/.github": true,
 
         // "**/assets/css": true,
         // "**/assets/js": true,
