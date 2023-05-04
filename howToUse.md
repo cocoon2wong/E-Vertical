@@ -10,19 +10,15 @@ gh-badge: [star, fork]
  * @Author: Conghao Wong
  * @Date: 2023-02-27 16:20:22
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-28 19:32:30
+ * @LastEditTime: 2023-05-04 17:11:58
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
-<div style="text-align: center;">
-    <a class="btn btn-colorful btn-lg" href="https://arxiv.org/abs/2304.05106">📖 Paper</a>
-    <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/E-Vertical">🛠️ Codes</a>
-    <a class="btn btn-colorful btn-lg" href="../index">💡 Homepage</a>
-</div>
-
 ## Get Started
+
+---
 
 You can clone [this repository](https://github.com/cocoon2wong/E-Vertical) by the following command:
 
@@ -34,6 +30,8 @@ Since the repository contains all the dataset files, this operation may take a l
 Or you can just download the zip file from [here](https://codeload.github.com/cocoon2wong/E-Vertical/zip/refs/heads/main).
 
 ## Requirements
+
+---
 
 The codes are developed with python 3.9.
 Additional packages used are included in the `requirements.txt` file.
@@ -56,10 +54,14 @@ Read our post for more information about the environment configurations:
 
 ## Dataset Prepare and Process
 
+---
+
 Before training `E-V^2-Net` on your own dataset, you should add your dataset information.
 See [this document](https://cocoon2wong.github.io/Project-Luna/) for details.
 
 ## Evaluation
+
+---
 
 You can use the following command to evaluate the `E-V^2-Net` performance end-to-end:
 
@@ -106,6 +108,10 @@ for dataset in eth hotel univ zara1 zara2
         --loadb weights/silverballers/VB_co_DFT_${dataset}
 ```
 
+{: .box-warning}
+**Warning:** For 3D bounding box or higher dimensional prediction models, we do not provide weights for the corresponding stage 2 subnetwork.
+You can get the complete prediction results by using the following linear interpolation second stage network by passing `--loadb l` instead.
+
 ### Linear-Interpolation Models
 
 You can also start testing the fast version of our pre-trained models with the argument `--loadb l` instead of the `--loadb $MODEL_PATH_B`.
@@ -126,6 +132,9 @@ If you have the dataset videos and put them into the `videos` folder, you can dr
 {: .box-warning}
 **Warning:** You must put videos according to the `video_path` item in the clip's `plist` config file in the `./dataset_configs` folder if you want to draw visualized results on them.
 
+{: .box-warning}
+**Warning:** Currently, only 2D coordinate and 2D bounding box visualization predictions are supported for drawing visualizations.
+
 If you want to draw visualized trajectories like what our paper shows, you can add the additional `--draw_distribution 2` argument.
 For example, if you have put the video `zara1.mp4` into `./videos/zara1.mp4`, you can draw the `E-V^2-Net` results with the following command:
 
@@ -139,10 +148,12 @@ python main.py --model MKII \
 
 ## Args Used
 
+---
+
 Please specify your customized args when training or testing your model in the following way:
 
 ```bash
-python main.py --ARG_KEY1 ARG_VALUE2 --ARG_KEY2 ARG_VALUE2 --ARG_KEY3 ARG_VALUE3 ...
+python main.py --ARG_KEY1 ARG_VALUE2 --ARG_KEY2 ARG_VALUE2 -SHORT_ARG_KEY3 ARG_VALUE3 ...
 ```
 
 where `ARG_KEY` is the name of args, and `ARG_VALUE` is the corresponding value.
@@ -158,6 +169,7 @@ About the `argtype`:
   The program will parse these args from the terminal at each time.
 
 <!-- DO NOT CHANGE THIS LINE -->
+
 ### Basic args
 
 - `--K_train`: type=`int`, argtype=`static`.
@@ -175,9 +187,6 @@ About the `argtype`:
 - `--dataset`: type=`str`, argtype=`static`.
   Name of the video dataset to train or evaluate. For example, `'ETH-UCY'` or `'SDD'`. NOTE: DO NOT set this argument manually. 
   The default value is `Unavailable`.
-- `--dim`: type=`int`, argtype=`static`.
-  Dimension of the `trajectory`. For example, - coordinate (x, y) -> `dim = 2`; - boundingbox (xl, yl, xr, yr) -> `dim = 4`. 
-  The default value is `-1`.
 - `--draw_distribution` (short for `-dd`): type=`int`, argtype=`temporary`.
   Controls if draw distributions of predictions instead of points. If `draw_distribution == 0`, it will draw results as normal coordinates; If `draw_distribution == 1`, it will draw all results in the distribution way, and points from different time steps will be drawn with different colors. 
   The default value is `0`.
@@ -267,7 +276,7 @@ About the `argtype`:
   The default value is `mix`.
 - `--test_step`: type=`int`, argtype=`static`.
   Epoch interval to run validation during training. 
-  The default value is `3`.
+  The default value is `1`.
 - `--update_saved_args`: type=`int`, argtype=`temporary`.
   Choose whether to update (overwrite) the saved arg files or not. 
   The default value is `0`.
@@ -281,7 +290,7 @@ About the `argtype`:
   The number of style channels in `Agent` model. 
   The default value is `20`.
 - `--T`: type=`str`, argtype=`static`.
-  Type of transformations used when encoding or decoding trajectories. It could be: - `none`: no transformations - `fft`: fast Fourier transform - `haar`: haar wavelet transform - `db2`: DB2 wavelet transform 
+  Type of transformations used when encoding or decoding trajectories. It could be: - `none`: no transformations - `fft`: fast Fourier transform - `fft2d`: 2D fast Fourier transform - `haar`: haar wavelet transform - `db2`: DB2 wavelet transform 
   The default value is `fft`.
 - `--down_sampling_rate`: type=`float`, argtype=`temporary`.
   Down sampling rate to sample trajectories from all N = K*Kc trajectories. 
@@ -307,6 +316,12 @@ About the `argtype`:
 - `--depth`: type=`int`, argtype=`static`.
   Depth of the random noise vector. 
   The default value is `16`.
+- `--deterministic`: type=`int`, argtype=`static`.
+  Controls if predict trajectories in the deterministic way. 
+  The default value is `0`.
+- `--loss`: type=`str`, argtype=`temporary`.
+  Loss used to train agent models. Canbe `'avgkey'` or `'keyl2'`. 
+  The default value is `keyl2`.
 
 ### Second-stage silverballers args
 
@@ -320,7 +335,8 @@ About the `argtype`:
 Codes of the Transformers used in this model come from [TensorFlow.org](https://www.tensorflow.org/tutorials/text/transformer);  
 Dataset CSV files of ETH-UCY come from [SR-LSTM (CVPR2019) / E-SR-LSTM (TPAMI2020)](https://github.com/zhangpur/SR-LSTM);  
 Original dataset annotation files of SDD come from [Stanford Drone Dataset](https://cvgl.stanford.edu/projects/uav_data/), and its split file comes from [SimAug (ECCV2020)](https://github.com/JunweiLiang/Multiverse);  
-The nuScenes dataset from [their home page](https://nuscenes.org/nuscenes);  
+The nuScenes dataset from [their home page](https://nuscenes.org/nuscenes);
+The Human3.6M dataset from [their home page](http://vision.imar.ro/human3.6m/description.php);  
 All contributors of the repository [Vertical](https://github.com/cocoon2wong/Vertical).
 
 ## Contact us
