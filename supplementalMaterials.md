@@ -9,7 +9,7 @@ subtitle: "Supplemental Materials for \"Another Vertical View: A Hierarchical Ne
  * @Author: Conghao Wong
  * @Date: 2023-03-21 17:52:21
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-04-28 19:38:58
+ * @LastEditTime: 2023-05-04 16:31:14
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -347,9 +347,116 @@ $$
 
 Then, the outer product matrix $\bm{R}[n, :, :]$ has become the adjacency matrix of the graph $\bm{G}(n) = (\mathcal{V}(n), \mathcal{E}(n))$ on the frequency node $n \in [1, \mathcal{N}_h]$.
 
+It is worth noting that the methods proposed in the manuscript do not really use graph structures and graph convolution operations.
+The analyses using the graph views are only intended to make it easier to understand the motivation and the rough working of bilinear structures.
+Therefore, this part of the analysis is for reference only.
+
+## E. Evolution of Motion (Skeleton) Prediction
+
+---
+
+The E-V$^{2}$-Net is proposed to handle both trajectories' frequency response and the dimension-wise interactions.
+We have validated the proposed models with three different forms of trajectories, including **2D coordinates** ($M=2$), **2D bounding boxes** ($M=4$), and **3D bounding boxes** ($M=6$).
+In order to verify more directly the modeling and prediction capabilities of the proposed model for heterogeneous trajectories, we validated the prediction performance for 3D human skeletons in this section.
+The skeletons we used for validation consist of 17 3D points, which we call **3D skeleton-17** ($M=51$).
+It should be noted that the proposed models (V$^{2}$-Net and E-V$^{2}$-Net) are not specifically designed for motion (skeleton) prediction.
+We just want to verify our idea under a new type of heterogeneous trajectories.
+
+### Settings
+
+**Datasets.** Following recent motion prediction approaches like [8], we choose the **Human3.6M** [9][10] dataset to validate the motion prediction performance.
+It is a big dataset with 3.6 million 3D human poses and corresponding images, performed by 11 professional actors in 17 scenarios (such as discussion, smoking, taking photos, and talking on the phone).
+Its videos and pose data are recorded at 50Hz.
+
+**Baselines.** We choose the following methods as baselines to validate E-V$^{2}$-Net's skeleton prediction performance, including Res. sup. [2], Traj-GCN [3], DMGNN [4], MSR-GCN [5], PGBIG [6], SPGSN [7], EqMotion [8].
+
+**Metrics.** We use the FDE (Final Displacement Error) as the metric to measure the 3D skeleton prediction performance.
+It should be noted that in the field of motion prediction, this metric is also more commonly known as the Mean Per Joint Position Error (MPJPE).
+For easier understanding, we still use the FDE as usual for trajectory prediction.
+
+**Implementation Details.** Following previous settings, we use all data from subjects $\{1, 6, 7, 8, 9\}$ to train the model, subjects $\{11\}$ to validate, and subjects $\{5\}$ to test.
+When making the training samples, we sample observations with the frequency of 25Hz (\IE, the sample interval is 40ms) and use $t_h = 10$ frames (400ms) of observations from all subjects to predict their possible trajectories (3D skeleton-17) for the next $t_f = 10$ frames (400ms).
+
+We set $N_{key} = 4$, and $\{t^{key}_1, t^{key}_2, t^{key}_3, t^{key}_4\} = \{t_h + 1, t_h + 4, t_h + 7,t_h + 10\}$.
+The input dimension of the network is set to $M = 17*3 = 51$.
+We extend the feature dimension from 128 to 512 for each layer in the network to expand the model capacity.
+We disable the noise sampling layers so that the network could predict the deterministic predictions.
+In addition, since there is only one subject in the scene, all modules of social interaction and scene interaction are also disabled.
+When training on Human3.6M, we set the learning rate to 0.0005 and train the model for 200 epochs.
+
+### Comparisons to State-of-the-Art Methods
+
+<div style="text-align: center;">
+    TABLE 2<br>
+    Comparisons of 3D skeleton prediction performance on Human3.6M.
+    Reported metrics are the FDE during different prediction periods (length of these periods are shown in million seconds).<br>
+    <img style="width: 60%;" src="../subassets/img/appendix_4.png">
+</div>
+
+We show the comparisons of the proposed E-V$^{2}$-Net Haar and several state-of-the-art motion prediction baselines in TABLE 2.
+The proposed model and MSR-GCN have similar motion prediction performance.
+Although the proposed E-V$^{2}$-Net does not outperform the recently proposed methods like EqMotion (for about 14% performance drop), it still shows a strong competitive performance.
+
+### Qualitative Analysis
+
+<div style="text-align: center;">
+    <img style="width: 100%;" src="../subassets/img/appendix_5.png">
+    Fig. 3. Visualized 3D skeletons predictions (3D skeleton-17) on Human3.6M.
+</div>
+
+We show the visualized 3D skeleton prediction results in Fig. 3 to demonstrate how the proposed model handles the complex dimension-wise interactions within the trajectory.
+Naturally, dimension-wise interactions in a skeleton manifest as changes and interactions of edges between different joints, and are limited by the physical constraints and motions of the human body.
+The proposed model, although not purposely designed for motion prediction, still exhibits amazing prediction results.
+As shown in Fig. 3 (a), E-V$^{2}$-Net successfully predicted the subsequent movements of the person who was running.
+It is particularly noteworthy that it has a better prediction of the legs in the skeleton, which is also shown in Fig. 3 (b) and (c).
+Unfortunately, the model does not predict the human arms very well, as shown in Fig. 3 (c) they remain almost stationary without any motion.
+
+### Summary
+
+The prediction results in the more complex human 3D skeletons ($M=51$) also demonstrate the effectiveness of the proposed E-V$^{2}$-Net in dealing with dimension-wise interaction in more complex heterogeneous trajectories.
+It also shows the higher trajectory prediction potential of the model without changing the model structure, which further demonstrates the generality of the proposed model ``from another view''.
+However, it is worth noting that motion prediction is currently a challenging task, which is also more different from human trajectory prediction in terms of concerns and applications.
+While comparisons across tasks may be inappropriate, we only try to validate the model's ability to handle dimension-wise interactions.
 
 ## References
 
 ---
 
-[1] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, Ł. Kaiser, and I. Polosukhin, “Attention is all you need,” in Advances in neural information processing systems, 2017, pp. 59986008.
+1. A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N.
+    Gomez, Ł. Kaiser, and I. Polosukhin, “Attention is all you need,”
+    in Advances in neural information processing systems, 2017, pp. 5998–6008.
+2. J. Martinez, M. J. Black, and J. Romero, “On human motion
+    prediction using recurrent neural networks,” in Proceedings of the
+    IEEE conference on computer vision and pattern recognition, 2017, pp.
+    2891–2900.
+3. W. Mao, M. Liu, M. Salzmann, and H. Li, “Learning trajectory
+    dependencies for human motion prediction,” in Proceedings of the
+    IEEE/CVF International Conference on Computer Vision, 2019, pp.
+    9489–9497.
+4. M. Li, S. Chen, Y. Zhao, Y. Zhang, Y. Wang, and Q. Tian, “Dynamic
+    multiscale graph neural networks for 3d skeleton based human
+    motion prediction,” in Proceedings of the IEEE/CVF conference on
+    computer vision and pattern recognition, 2020, pp. 214–223.
+5. L. Dang, Y. Nie, C. Long, Q. Zhang, and G. Li, “Msr-gcn: Multi-
+    scale residual graph convolution networks for human motion
+    prediction,” in Proceedings of the IEEE/CVF International Conference
+    on Computer Vision, 2021, pp. 11 467–11 476.
+6. T. Ma, Y. Nie, C. Long, Q. Zhang, and G. Li, “Progressively
+    generating better initial guesses towards next stages for high-
+    quality human motion prediction,” in Proceedings of the IEEE/CVF
+    Conference on Computer Vision and Pattern Recognition, 2022, pp.
+    6437–6446.
+7. M. Li, S. Chen, Z. Zhang, L. Xie, Q. Tian, and Y. Zhang, “Skeleton-
+    parted graph scattering networks for 3d human motion prediction,” in Computer Vision–ECCV 2022: 17th European Conference, Tel
+    Aviv, Israel, October 23–27, 2022, Proceedings, Part VI. Springer,
+    2022, pp. 18–36.
+8. C. Xu, R. T. Tan, Y. Tan, S. Chen, Y. G. Wang, X. Wang, and Y. Wang,
+    “Eqmotion: Equivariant multi-agent motion prediction with in-
+    variant interaction reasoning,” arXiv preprint arXiv:2303.10876, 2023.
+9. C. Ionescu, D. Papava, V. Olaru, and C. Sminchisescu, “Human3.
+    6m: Large scale datasets and predictive methods for 3d human
+    sensing in natural environments,” IEEE transactions on pattern
+    analysis and machine intelligence, vol. 36, no. 7, pp. 1325–1339, 2013.
+10. C. S. Catalin Ionescu, Fuxin Li, “Latent structured models for
+    human pose estimation,” in International Conference on Computer
+    Vision, 2011.
