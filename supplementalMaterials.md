@@ -389,7 +389,7 @@ When training on Human3.6M, we set the learning rate to 0.0005 and train the mod
 <div style="text-align: center;">
     TABLE 2<br>
     Comparisons of 3D skeleton prediction performance on Human3.6M.
-    Reported metrics are the FDE during different prediction periods (length of these periods are shown in million seconds).<br>
+    Reported metrics are the FDE during different prediction periods (length of these periods are shown in milliseconds).<br>
     <img style="width: 60%;" src="../subassets/img/appendix_4.png">
 </div>
 
