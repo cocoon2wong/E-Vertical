@@ -10,7 +10,7 @@ gh-badge: [star, fork]
  * @Author: Conghao Wong
  * @Date: 2023-02-27 16:20:22
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2023-05-04 17:11:58
+ * @LastEditTime: 2023-06-09 11:24:35
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -58,6 +58,41 @@ Read our post for more information about the environment configurations:
 
 Before training `E-V^2-Net` on your own dataset, you should add your dataset information.
 See [this document](https://cocoon2wong.github.io/Project-Luna/) for details.
+
+## Training
+
+---
+
+Due to the difference in the target trainable variables of loss functions in different subnetworks, we divide the network into two parts to train them separately for the convenience of training.
+The network can still be used as an end-to-end network during testing.
+
+### Stage-1 Subnetwork
+
+It is the coarse-level keypoints estimation sub-network.
+To train the subnetwork, you can pass the --model va argument to run the `main.py`.
+You should also specify the temporal keypoint indexes in the predicted period.
+For example, when you want to train a model that predicts future 12 frames of trajectories, and you would like to set $N_{key} = 3$ (which is the same as the basic settings in our paper), you can pass the `--key_points 3_7_11` argument when training.
+Please note that indexes start with `0`.
+You can also try any other keypoints settings or combinations to train the subnetwork and obtain it that best fits your datasets.
+Please refer to section "Args Used" to learn how other args work when training and evaluating.
+
+{: .box-warning}
+**Warning:** Do not pass any value to `--load` when training, or it will start evaluating the loaded model.
+
+For a quick start, you can train the subnetwork via the following minimum arguments:
+
+```bash
+python main.py --model eva --key_points 3_7_11 --T fft --split sdd
+```
+
+### Stage-2 Subnetwork
+
+It is the fine-level spectrum interpolation sub-network.
+You can pass the `--model vb` to run the training with the following minimum arguments:
+
+```bash
+python main.py --model vb --points 3 --split sdd
+```
 
 ## Evaluation
 
