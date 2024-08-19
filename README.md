@@ -10,8 +10,11 @@
 
 # Codes for "Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums"
 
+This is the tensorflow version of codes.
 The readme documents will be available soon.
 For more details, please refer to our [homepage](https://cocoon2wong.github.io/E-Vertical).
+
+Update 2024.08: The torch version of the codes are available in [this branch](https://github.com/cocoon2wong/E-Vertical/tree/torch_version).
 
 ## Args Used
 <!-- DO NOT CHANGE THIS LINE -->
