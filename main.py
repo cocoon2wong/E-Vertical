@@ -2,51 +2,39 @@
 @Author: Conghao Wong
 @Date: 2022-06-20 15:28:14
 @LastEditors: Conghao Wong
-@LastEditTime: 2023-06-07 15:34:48
+@LastEditTime: 2024-08-06 11:50:43
 @Description: file content
 @Github: https://github.com/cocoon2wong
 @Copyright 2022 Conghao Wong, All Rights Reserved.
 """
 
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
-
 import sys
 
-import codes as C
-import silverballers
-from scripts.update_readme import print_help_info
-from scripts.utils import get_value
+import torch
+
+import qpid
 
 
-def main(args: list[str]):
-    h_value = None
+def main(args: list[str], run_train_or_test=True):
+    min_args = qpid.args.Args(args, is_temporary=True)
 
-    if '--help' in args:
-        h_value = get_value('--help', args, default='all_args')
-    elif '-h' in args:
-        h_value = get_value('-h', args, default='all_args')
-
-    if h_value:
-        print_help_info(h_value)
+    if (h := min_args.help) != 'null':
+        qpid.print_help_info('all_args' if h == 'True' else h)
         exit()
 
-    min_args = C.args.Args(terminal_args=args,
-                           is_temporary=True)
+    t = qpid.get_structure(min_args.model)(args)
 
-    model = min_args.model
-    if model == 'linear':
-        s = C.models.Linear
-    else:
-        s = silverballers.get_structure(model)
-
-    t = s(terminal_args=args)
-    t.train_or_test()
+    if run_train_or_test:
+        t.train_or_test()
 
     # It is used to debug
-    # t.print_info_all()
+    if t.args.verbose:
+        t.print_info_all()
 
     return t
 
+
 if __name__ == '__main__':
+    import ev
+    torch.autograd.set_detect_anomaly(True)
     main(sys.argv)

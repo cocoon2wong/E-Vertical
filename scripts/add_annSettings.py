@@ -61,7 +61,7 @@ def main():
         ),
     }
 
-    write_plist(d, './codes/annSettings.plist')
+    write_plist(d, './qpid/dataset/__base/annSettings.plist')
 
 
 if __name__ == '__main__':
